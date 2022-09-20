@@ -1,0 +1,9 @@
+#!/bin/bash
+FIND="www.domain1.de"
+REPLACE="www.domain2.de"
+PATH="/var/log/httpd/"
+
+cd $INORDNER
+for i in $(find . -iname "*$FIND*" | awk -F './' '{print $2}'); do
+        mv $i $(echo $i| sed s/$FIND/$REPLACE/g)
+done
