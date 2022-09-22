@@ -1,0 +1,14 @@
+# The following shell script creates links for all of these directories within the /tmp/tape directory and then creates a tar
+# tape that can be sent. Note that the tar h option tells tar to follow symbolic links and 
+# archive whatever is at the end of the link; otherwise, tar makes a copy of just the symbolic link
+
+#!/bin/sh
+dir=/tmp/tape.benito
+test -d $dir || mkdir $dir
+cd $dir
+rm -f man1 product code execs
+ln -s /development/doc/man/man1
+ln -s /development/doc/product
+ln -s /src/code
+ln -s /release/68000/execs
+tar ch ./man1 ./product ./code ./execs
